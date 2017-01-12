@@ -1,6 +1,7 @@
 package com.dinghao.testsimfactory;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -9,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -30,12 +32,19 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     adapter.notifyDataSetChanged();
                     break;
                 case 1:
-                    mStatus.setText("finish! " + failed + " is failed");
+                    if (failed == 0) {
+                        mBegin.setBackgroundColor(Color.GREEN);
+                    } else {
+                        mBegin.setBackgroundColor(Color.RED);
+                    }
+                    mProgressBar.setVisibility(View.GONE);
+                    mStatus.setText(getString(R.string.finish) + failed + getString(R.string.failed));
                     break;
             }
         }
     };
     private TextView mStatus;
+    private ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,13 +67,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
         mBegin.setOnClickListener(this);
         mStatus = (TextView) findViewById(R.id.status);
         mStatus.setOnClickListener(this);
+        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.begin:
-                mStatus.setText("testing...");
+                mBegin.setBackgroundColor(Color.WHITE);
+                mStatus.setText(R.string.testing);
+                mProgressBar.setVisibility(View.VISIBLE);
                 list.clear();
                 adapter.notifyDataSetChanged();
                 SimUtil.setIsEasy(mEasy.isChecked());

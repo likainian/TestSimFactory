@@ -19,6 +19,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/begin" />
+    <ProgressBar
+        style="?android:attr/progressBarStyle"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar" />
     <TextView
         android:id="@+id/status"
         android:layout_width="match_parent"

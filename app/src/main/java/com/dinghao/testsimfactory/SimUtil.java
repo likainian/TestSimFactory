@@ -270,7 +270,7 @@ public class SimUtil {
             }
             long end = SystemClock.currentThreadTimeMillis();
             if(imsi!=null){
-                list.add((sim1?"sim1":"sim2")+" is success!"+"index"+index);
+                list.add((sim1?"sim1":"sim2")+context.getString(R.string.success)+"index："+index);
                 Log.e(TAG, "switchSimCard: switchSimCard is success! use time:"+(end-start)+"index"+index);
                 sp = context.getSharedPreferences("sim",Context.MODE_PRIVATE);
                 if(sp.getString(index+"@"+sim1,"").equals("")||!sp.getString(index+"@"+sim1,"").equals(imsi+"@"+readSIMCard(context))){
@@ -278,18 +278,18 @@ public class SimUtil {
                     edit.putString(index+"@"+sim1,imsi+"@"+readSIMCard(context));
                     edit.commit();
                 }
-                if(getSimState(context)==TelephonyManager.SIM_STATE_READY){
-                    listener.onSimReady(list);
-                }
+
+                listener.onSimReady(list);
                 switchNextSim(context,sim1,index,listener);
             }else {
-                if(getSimState(context)==TelephonyManager.SIM_STATE_READY){
+                if(isSimInsert(sim1)){
                     switchSimCard(context,sim1,index,listener);
                 }else {
-                    switchNextSim(context,sim1,index,listener);
                     failed++;
-                    list.add((sim1?"sim1":"sim2")+" is failed!"+"index"+index);
+                    list.add((sim1?"sim1":"sim2")+context.getString(R.string.fail)+"index："+index);
+                    listener.onSimReady(list);
                     Log.e(TAG, "switchSimCard: switchSimCard is failed! use time:"+(end-start)+"index"+index);
+                    switchNextSim(context,sim1,index,listener);
                 }
             }
 

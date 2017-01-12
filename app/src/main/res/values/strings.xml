@@ -2,5 +2,10 @@
 <resources>
     <string name="app_name">TestSimFactory</string>
     <string name="easy">简单模式</string>
-    <string name="begin">begin</string>
+    <string name="begin">开始测试</string>
+    <string name="testing">正在测试...</string>
+    <string name="finish">"测试完成! "</string>
+    <string name="failed">张失败!</string>
+    <string name="success">成功！</string>
+    <string name="fail">失败！</string>
 </resources>
