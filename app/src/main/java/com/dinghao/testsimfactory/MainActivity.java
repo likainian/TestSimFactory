@@ -38,6 +38,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         mBegin.setBackgroundColor(Color.RED);
                     }
                     mProgressBar.setVisibility(View.GONE);
+                    FileUtil.saveFile(list.toString(),"/sdcard/testsimfactory","sim.txt",false);
+                    FileUtil.readFile("/sdcard/testsimfactory/sim.txt");
                     mStatus.setText(getString(R.string.finish) + failed + getString(R.string.failed));
                     break;
             }
