@@ -14,6 +14,30 @@
         android:layout_height="wrap_content"
         android:id="@+id/easy" />
 
+
+
+    <RadioGroup
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        <RadioButton
+            android:text="@string/easy"
+            android:checked="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioButton1" />
+        <RadioButton
+            android:text="@string/normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioButton2" />
+        <RadioButton
+            android:text="@string/all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioButton3" />
+    </RadioGroup>
+
     <Button
         android:text="@string/begin"
         android:layout_width="match_parent"

@@ -8,4 +8,6 @@
     <string name="failed">张失败!</string>
     <string name="success">成功！</string>
     <string name="fail">失败！</string>
+    <string name="normal">一般模式</string>
+    <string name="all">全部模式</string>
 </resources>

@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         mBegin.setBackgroundColor(Color.RED);
                     }
                     mProgressBar.setVisibility(View.GONE);
-                    FileUtil.saveFile(list.toString(),"/sdcard/testsimfactory","sim.txt",false);
+                    FileUtil.saveFile(list.toString(), "/sdcard/testsimfactory", "sim.txt", false);
                     FileUtil.readFile("/sdcard/testsimfactory/sim.txt");
                     mStatus.setText(getString(R.string.finish) + failed + getString(R.string.failed));
                     break;
@@ -47,6 +48,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
     };
     private TextView mStatus;
     private ProgressBar mProgressBar;
+    private RadioButton mRadioButton1;
+    private RadioButton mRadioButton2;
+    private RadioButton mRadioButton3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +72,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         mBegin.setOnClickListener(this);
         mStatus = (TextView) findViewById(R.id.status);
-        mStatus.setOnClickListener(this);
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
+        mRadioButton1 = (RadioButton) findViewById(R.id.radioButton1);
+        mRadioButton2 = (RadioButton) findViewById(R.id.radioButton2);
+        mRadioButton3 = (RadioButton) findViewById(R.id.radioButton3);
     }
 
     @Override
@@ -81,9 +87,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 mProgressBar.setVisibility(View.VISIBLE);
                 list.clear();
                 adapter.notifyDataSetChanged();
-                SimUtil.setIsEasy(mEasy.isChecked());
                 SimUtil.setFailed(0);
                 SimUtil.clearList();
+                if(mRadioButton1.isChecked()){
+                    SimUtil.setSwitchMode(1);
+                }else if(mRadioButton2.isChecked()){
+                    SimUtil.setSwitchMode(2);
+                }else if(mRadioButton3.isChecked()){
+                    SimUtil.setSwitchMode(3);
+                }
                 Thread switchThread = new Thread(new Runnable() {
                     @Override
                     public void run() {

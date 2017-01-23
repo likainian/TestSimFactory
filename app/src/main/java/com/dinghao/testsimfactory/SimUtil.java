@@ -27,15 +27,16 @@ import java.util.List;
 
 public class SimUtil {
     private static final String TAG = "SimUtilttt";
-    private static boolean isEasy;
+    private static int switchMode;
 
-    public static boolean isEasy() {
-        return isEasy;
+    public static int getSwitchMode() {
+        return switchMode;
     }
 
-    public static void setIsEasy(boolean isEasy) {
-        SimUtil.isEasy = isEasy;
+    public static void setSwitchMode(int switchMode) {
+        SimUtil.switchMode = switchMode;
     }
+
     private static List<String> list = new ArrayList<>();
     private static int failed;
 
@@ -298,14 +299,25 @@ public class SimUtil {
         }
     }
     public static void switchNextSim(Context context,boolean sim1,int index,OnSimReadyListener listener){
-        if(isEasy){
+        if(switchMode == 1){
             if(sim1){
                 switchSimCard(context,false,0,listener);
             }else {
                 listener.onFinished(failed);
             }
-        }else {
+        }else if(switchMode == 2){
             index += 8;
+            if(index<127){
+                switchSimCard(context,sim1,index,listener);
+            }else {
+                if(sim1){
+                    switchSimCard(context,false,0,listener);
+                }else {
+                    listener.onFinished(failed);
+                }
+            }
+        }else if(switchMode == 3){
+            index += 1;
             if(index<127){
                 switchSimCard(context,sim1,index,listener);
             }else {
