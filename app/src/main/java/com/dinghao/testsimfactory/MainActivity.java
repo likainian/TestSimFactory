@@ -8,7 +8,6 @@ import android.os.Message;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
@@ -19,7 +18,6 @@ import java.util.List;
 
 public class MainActivity extends Activity implements View.OnClickListener {
     public int failed;
-    private CheckBox mEasy;
     private Button mBegin;
     private ListView mListView;
     private List<String> list = new ArrayList<>();
@@ -66,7 +64,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     private void initView() {
-        mEasy = (CheckBox) findViewById(R.id.easy);
         mBegin = (Button) findViewById(R.id.begin);
         mListView = (ListView) findViewById(R.id.list_view);
 
